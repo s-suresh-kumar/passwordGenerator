@@ -1,29 +1,20 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-/*
-function clearPassword() {
-  var passwordText = document.querySelector("#password");
-    console.log('PASSWORDTEXT:', passwordText);
-    console.log('password:',password);
-  
-    passwordText.value = "";
-  
-  }
-clearPassword();
-*/
 
-const lc = confirm("Do you want to include lowerCase chars in password");
-const uc = confirm("do you want to include upperCase chars in password?");
+const lc = confirm("Do you want to include lower case characters in password");
+const uc = confirm("Do you want to include upper case characaters in password?");
 const num = confirm("Do you want to include numerals in password?");
-const sp = confirm("Do you want to include special chars in password?");
+const sp = confirm("Do you want to include special characters in password?");
+
 let userContinue = false;
 let pswLen = 0;
+let wantToContinue = true;
 
 if (lc || uc || num || sp) {
   userContinue=true;
 }
 if (userContinue) {
-   pswLen = prompt("Provide password length 8 - 128 chars");
+  pswLen = prompt("Provide password length 8 - 128 chars");
   console.log ('PSWLEN-1:', pswLen);
 
   if (pswLen != null) {
@@ -34,12 +25,14 @@ if (userContinue) {
 
     while (userContinue && inputError) {
 
-      alert("password Length is a number between 8 and 128.");
+      alert("Password Length is a number between 8 and 128.");
 
-      userContinue = confirm("would you like to continue?")
+      wantToContinue = confirm("Would you like to continue?")
 
-      if (userContinue == false) {
-        alert( "No passord generated; password Length 8 - 128 chars only");
+      if (wantToContinue == false) {
+        alert( "No passord will be generated; valid psw length needed (8 - 128 chars)");
+        userContinue = false;
+        
       }
       else {
         pswLen = prompt("Provide password length 8 - 128 chars");
@@ -58,15 +51,32 @@ if (userContinue) {
   else {
     userContinue = false;
   }
+  if ((wantToContinue) && (userContinue) && (pswLen != null)){
+  alert(`Your selected password criteria:\n    include lowercase = ${lc}\n    include upper case = ${uc}\n    include numbers = ${num}\n    include special characters = ${sp}\n    password Length = ${pswLen}\n\nClick on Generate Password Button to generate your secure passord with these password criteria`);
+}
 }
 else {
-  alert("One of lowerCase, upperCase, numerals or special Characters have to be selected to generate Password, Please refresh page and re-enter");
+  alert("One of lower case, upper case, numerals or special characters have to be selected to generate Password, Please refresh page and re-enter");
 }
 
 function generatePassword() {
-
+let errorText = '';
 if (!userContinue) {
-  return "No password Generated ";
+  errorText += 'No password Generated';
+if (!(lc || uc || num || sp)) {
+  errorText += ', Atleast one char type should be included for Password Generation.';
+}
+
+
+else if (wantToContinue == false) {
+errorText += ', User Cancelled.';
+}
+else if (pswLen === null) {
+  errorText += ', No pswLen provided. Reload the page and retry.';
+}
+console.log('PSWLEN=',pswLen);
+errorText += ' Reload the page and retry.'
+  return errorText;
 }
 
 const lcChars = "abcdefghijklmnopqrstuvwxyz";
@@ -77,7 +87,7 @@ const spChars = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 /*
 const spChars = [' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^','_', '`', '{', '|', '}', '~']; */
 
-let possiblePswChars;
+let possiblePswChars = '';
 let generatedPsw = '';
 let i=0;
 if (lc) {
@@ -92,7 +102,7 @@ if (uc) {
   possiblePswChars = possiblePswChars + ucChars;
   generatedPsw += ucChars[Math.floor(Math.random() *ucChars.length)];
   i++;
-  console.log('POSSIBLEPSWCHARS',possiblePswChars);
+  console.log('POSSIBLEPSWCHARS', possiblePswChars);
   console.log('GENERATED PSW', generatedPsw);
   
 }
