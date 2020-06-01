@@ -1,6 +1,7 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+// Query user for password criteria and confirm
 const lc = confirm("Do you want to include lower case characters in password");
 const uc = confirm("Do you want to include upper case characaters in password?");
 const num = confirm("Do you want to include numerals in password?");
@@ -13,6 +14,7 @@ let wantToContinue = true;
 if (lc || uc || num || sp) {
   userContinue=true;
 }
+// prompt user and get desired password length
 if (userContinue) {
   pswLen = prompt("Provide password length 8 - 128 chars");
   console.log ('PSWLEN-1:', pswLen);
@@ -59,6 +61,7 @@ else {
   alert("One of lower case, upper case, numerals or special characters have to be selected to generate Password, Please refresh page and re-enter");
 }
 
+
 function generatePassword() {
 let errorText = '';
 if (!userContinue) {
@@ -79,25 +82,39 @@ errorText += ' Reload the page and retry.'
   return errorText;
 }
 
+// We are here means, all user inputs are validated and we are ready to
+// generate the password per user password criteria
+
+// different possible character sets
 const lcChars = "abcdefghijklmnopqrstuvwxyz";
 const ucChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const numerals = '0123456789';
 const spChars = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 
-/*
-const spChars = [' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^','_', '`', '{', '|', '}', '~']; */
-
+// possiblePswChars builds from empty string 
+// Initialize other variables as well
 let possiblePswChars = '';
 let generatedPsw = '';
 let i=0;
+
+/* if user wants to include lowercase characters, let us choose a lowercase character
+ from among the 24 randomly and use it as 1st char in password
+ We are trying to also honor ( self imposed restriction or a not a must requirement) that
+ if user wants a character type to be included in the password, make sure atleast 1 character
+ from that character type is present in the password  */
 if (lc) {
   possiblePswChars = lcChars;
-  //generatedPsw[i++]= lcChars[Math.floor(Math.random() *lcChars.length)];
   generatedPsw += lcChars[Math.floor(Math.random() *lcChars.length)];
   i++;
   console.log('POSSIBLEPSWCHARS', possiblePswChars);
   console.log('GENERATED PSW', generatedPsw);
 } 
+
+/* if user wants to include uppercase characters, let us choose a uppercase character
+ from among the 24 randomly and use it as 2nd char in password
+ We are trying to also honor ( self imposed restriction or a not a must requirement) that
+ if user wants a character type to be included in the password, make sure atleast 1 character
+ from that character type is present in the password */
 if (uc) {
   possiblePswChars = possiblePswChars + ucChars;
   generatedPsw += ucChars[Math.floor(Math.random() *ucChars.length)];
@@ -106,14 +123,25 @@ if (uc) {
   console.log('GENERATED PSW', generatedPsw);
   
 }
+
+/* if user wants to include numbers, let us choose a number
+ from among the 10 randomly and use it as 3rd char in password
+ We are trying to also honor ( self imposed restriction or a not a must requirement) that
+ if user wants a character type to be included in the password, make sure atleast 1 character
+ from that character type is present in the password */
 if (num) {
   possiblePswChars = possiblePswChars + numerals;
   generatedPsw += numerals[Math.floor(Math.random() *numerals.length)];
   i++;
   console.log('POSSIBLEPSWCHARS',possiblePswChars);
   console.log('GENERATED PSW', generatedPsw);
- 
 }
+
+/* if user wants to include special characters, let us choose a number
+ from among all the sepcial characters and use it as  4th char in password
+ We are trying to also honor ( self imposed restriction or a not a must requirement) that
+ if user wants a character type to be included in the password, make sure atleast 1 character
+ from that character type is present in the password */
 if (sp) {
   possiblePswChars = possiblePswChars + spChars;
   generatedPsw += spChars[Math.floor(Math.random() *spChars.length)];
@@ -125,6 +153,7 @@ if (sp) {
 console.log('I:', i);
 console.log('PSWLEN',pswLen);
 
+/* Now that we ensured atleast one character of each character type that the user want to include in the password is built in to the password, build the rest of the password in a random manner from all the character types that the user wanted to make up the password */
 for (; i<pswLen;i++) {
   generatedPsw += possiblePswChars[Math.floor(Math.random() *possiblePswChars.length)];
 }
