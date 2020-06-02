@@ -5,9 +5,9 @@ Create an application that generates a random password based on user-selected cr
 
 
 ## Design:
-The passwordGenerator has just one page index.html. It has style.css and script.js
+The passwordGenerator has just one page index.html. It has style.css and script.js files as well.
 
-The html page is designed using responsive bootstrap 4 layouts and compoents so page is responsive to screen size changes and work well on all viewport sizes and devices. The page is validated using html validation services and is free of errors and warnings.
+The html page is designed using responsive bootstrap 4 layouts and compoents so page is responsive to screen size changes and work well on all viewport sizes and devices. The page is validated using js validation services and is free of errors and warnings.
 
 The script.js adds the dynamic behavior to the page by quering the user regarding password criteria  such as if the user wants to include
 

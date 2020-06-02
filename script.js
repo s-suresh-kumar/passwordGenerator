@@ -19,7 +19,7 @@ if (userContinue) {
   pswLen = prompt("Provide password length 8 - 128 chars");
   // console.log ('PSWLEN-1:', pswLen);
 
-  if (pswLen != null) {
+  if (pswLen !== null) {
 
     let inputError = (pswLen < 8 || pswLen >128);
 
@@ -29,16 +29,16 @@ if (userContinue) {
 
       alert("Password Length is a number between 8 and 128.");
 
-      wantToContinue = confirm("Would you like to continue?")
+      wantToContinue = confirm("Would you like to continue?");
 
-      if (wantToContinue == false) {
+      if (wantToContinue === false) {
         alert( "No passord will be generated; valid psw length needed (8 - 128 chars)");
         userContinue = false;
         
       }
       else {
         pswLen = prompt("Provide password length 8 - 128 chars");
-        if (pswLen != null) {
+        if (pswLen !== null) {
          // console.log ('PSWLEN-2:', pswLen);
         inputError=(pswLen <8 || pswLen >128);
         }
@@ -53,7 +53,7 @@ if (userContinue) {
   else {
     userContinue = false;
   }
-  if ((wantToContinue) && (userContinue) && (pswLen != null)){
+  if ((wantToContinue) && (userContinue) && (pswLen !== null)){
   alert(`Your selected password criteria:\n    include lowercase = ${lc}\n    include upper case = ${uc}\n    include numbers = ${num}\n    include special characters = ${sp}\n    password Length = ${pswLen}\n\nClick on Generate Password Button to generate your secure passord with these password criteria`);
 }
 }
@@ -71,14 +71,14 @@ if (!(lc || uc || num || sp)) {
 }
 
 
-else if (wantToContinue == false) {
+else if (wantToContinue === false) {
 errorText += ', User Cancelled.';
 }
 else if (pswLen === null) {
-  errorText += ', No pswLen provided. Reload the page and retry.';
+  errorText += ', No pswLen provided / User Cacelled';
 }
 // console.log('PSWLEN=',pswLen);
-errorText += ' Reload the page and retry.'
+errorText += ' Reload the page and retry.';
   return errorText;
 }
 
