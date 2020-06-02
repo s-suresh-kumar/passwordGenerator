@@ -9,21 +9,35 @@ const sp = confirm("Do you want to include special characters in password?");
 
 let userContinue = false;
 let pswLen = 0;
+let pswLenRaww =0;
 let wantToContinue = true;
+let inputErroror = false;
 
 if (lc || uc || num || sp) {
   userContinue=true;
 }
 // prompt user and get desired password length
 if (userContinue) {
+  
   pswLen = prompt("Provide password length 8 - 128 chars");
   // console.log ('PSWLEN-1:', pswLen);
 
   if (pswLen !== null) {
-
-    let inputError = (pswLen < 8 || pswLen >128);
-
-    
+  // console.log ('PSWLEN-2:', pswLen);
+    if (isNaN(pswLen) ===  true) {
+      // console.log ('PSWLEN-2:', pswLen);
+      inputError = true;
+      alert("Please enter a number"); 
+    }
+    else {
+      inputError =  (pswLen < 8 || pswLen > 128);
+    }
+    /*
+    console.log ('PSWLEN-2:', pswLen);
+    pswLen = pasrsInt(pswLen);
+    console.log ('PSWLEN-2:', pswLen);
+    inputError = (pswLen < 8 || pswLen > 128);
+*/
 
     while (userContinue && inputError) {
 
@@ -38,9 +52,11 @@ if (userContinue) {
       }
       else {
         pswLen = prompt("Provide password length 8 - 128 chars");
-        if (pswLen !== null) {
+
+        if (pswLen !== null)
+        {
          // console.log ('PSWLEN-2:', pswLen);
-        inputError=(pswLen <8 || pswLen >128);
+        inputError= (((isNaN(pswLen)) || (pswLen <8 || pswLen >128)));
         }
         else {
           userContinue = false;
