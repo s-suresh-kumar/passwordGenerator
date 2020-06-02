@@ -17,7 +17,7 @@ if (lc || uc || num || sp) {
 // prompt user and get desired password length
 if (userContinue) {
   pswLen = prompt("Provide password length 8 - 128 chars");
-  console.log ('PSWLEN-1:', pswLen);
+  // console.log ('PSWLEN-1:', pswLen);
 
   if (pswLen != null) {
 
@@ -39,7 +39,7 @@ if (userContinue) {
       else {
         pswLen = prompt("Provide password length 8 - 128 chars");
         if (pswLen != null) {
-        console.log ('PSWLEN-2:', pswLen);
+         // console.log ('PSWLEN-2:', pswLen);
         inputError=(pswLen <8 || pswLen >128);
         }
         else {
@@ -77,7 +77,7 @@ errorText += ', User Cancelled.';
 else if (pswLen === null) {
   errorText += ', No pswLen provided. Reload the page and retry.';
 }
-console.log('PSWLEN=',pswLen);
+// console.log('PSWLEN=',pswLen);
 errorText += ' Reload the page and retry.'
   return errorText;
 }
@@ -106,8 +106,8 @@ if (lc) {
   possiblePswChars = lcChars;
   generatedPsw += lcChars[Math.floor(Math.random() *lcChars.length)];
   i++;
-  console.log('POSSIBLEPSWCHARS', possiblePswChars);
-  console.log('GENERATED PSW', generatedPsw);
+  // console.log('POSSIBLEPSWCHARS', possiblePswChars);
+  // console.log('GENERATED PSW', generatedPsw);
 } 
 
 /* if user wants to include uppercase characters, let us choose a uppercase character
@@ -119,8 +119,8 @@ if (uc) {
   possiblePswChars = possiblePswChars + ucChars;
   generatedPsw += ucChars[Math.floor(Math.random() *ucChars.length)];
   i++;
-  console.log('POSSIBLEPSWCHARS', possiblePswChars);
-  console.log('GENERATED PSW', generatedPsw);
+  // console.log('POSSIBLEPSWCHARS', possiblePswChars);
+  // console.log('GENERATED PSW', generatedPsw);
   
 }
 
@@ -133,8 +133,8 @@ if (num) {
   possiblePswChars = possiblePswChars + numerals;
   generatedPsw += numerals[Math.floor(Math.random() *numerals.length)];
   i++;
-  console.log('POSSIBLEPSWCHARS',possiblePswChars);
-  console.log('GENERATED PSW', generatedPsw);
+  // console.log('POSSIBLEPSWCHARS',possiblePswChars);
+  // console.log('GENERATED PSW', generatedPsw);
 }
 
 /* if user wants to include special characters, let us choose a number
@@ -146,18 +146,18 @@ if (sp) {
   possiblePswChars = possiblePswChars + spChars;
   generatedPsw += spChars[Math.floor(Math.random() *spChars.length)];
   i++;
-  console.log('POSSIBLEPSWCHARS',possiblePswChars);
-  console.log('GENERATED PSW', generatedPsw);
+  // console.log('POSSIBLEPSWCHARS',possiblePswChars);
+  // console.log('GENERATED PSW', generatedPsw);
 }
 
-console.log('I:', i);
-console.log('PSWLEN',pswLen);
+// console.log('I:', i);
+// console.log('PSWLEN',pswLen);
 
 /* Now that we ensured atleast one character of each character type that the user want to include in the password is built in to the password, build the rest of the password in a random manner from all the character types that the user wanted to make up the password */
 for (; i<pswLen;i++) {
   generatedPsw += possiblePswChars[Math.floor(Math.random() *possiblePswChars.length)];
 }
-console.log('GENERATED PSW', generatedPsw);
+// console.log('GENERATED PSW', generatedPsw);
 return(generatedPsw);
 }
 
@@ -165,10 +165,10 @@ return(generatedPsw);
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
-  console.log('PASSWORD:', password);
+  // console.log('PASSWORD:', password);
   var passwordText = document.querySelector("#password");
-  console.log('PASSWORDTEXT:', passwordText);
-  console.log('password:',password);
+ // console.log('PASSWORDTEXT:', passwordText);
+ // console.log('password:',password);
 
   passwordText.value = password;
 
