@@ -73,7 +73,7 @@ function generatePassword() {
     }
   } else {
     alert(
-      "One of lower case, upper case, numerals or special characters have to be selected to generate Password, Please refresh page and re-enter"
+      "One of lower case, upper case, numerals or special characters have to be selected to generate Password, Please  retry "
     );
   }
 
@@ -89,7 +89,7 @@ function generatePassword() {
       errorText += ", No pswLen provided / User Cacelled";
     }
     // console.log('PSWLEN=',pswLen);
-    errorText += " Reload the page and retry.";
+    errorText += " Please try again.";
     return errorText;
   }
 
